@@ -17,6 +17,10 @@ export default {
         )} ${chalk.cyanBright("Please change a project name.")}`,
       )
     } else {
+      console.log(
+        `\n${chalk.blue(`Scaffolding project in ${process.cwd()}...`)}\n`,
+      )
+
       // 写入 template
       // 创建项目文件夹
       fs.mkdirSync(projectName)
@@ -28,6 +32,11 @@ export default {
 
       // 递归写入
       recursiveWrite(templatePath, projectName)
+
+      console.log(`${chalk.green("Down. Please run: ")}\n`)
+      console.log(`  ${chalk.cyanBright(`cd ${projectName}`)}`)
+      console.log(`  ${chalk.cyanBright(`npm install`)}`)
+      console.log(`  ${chalk.cyanBright(`npm run dev`)}\n`)
     }
   },
 }

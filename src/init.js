@@ -3,7 +3,6 @@ import Options from "./option/index.js"
 import Commands from "./command/index.js"
 
 export const init = () => {
-  console.log('???', process.env.npm_config_user_agent)
   registerOption(Options)
   registerCommand(Commands)
   program.parse()
