@@ -1,0 +1,21 @@
+lockfileVersion: 5.3
+
+specifiers:
+  chalk: ^5.0.0
+  commander: ^8.3.0
+
+dependencies:
+  chalk: 5.0.0
+  commander: 8.3.0
+
+packages:
+
+  /chalk/5.0.0:
+    resolution: {integrity: sha512-/duVOqst+luxCQRKEo4bNxinsOQtMP80ZYm7mMqzuh5PociNL0PvmHFvREJ9ueYL2TxlHjBcmLCdmocx9Vg+IQ==, tarball: chalk/download/chalk-5.0.0.tgz}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+    dev: false
+
+  /commander/8.3.0:
+    resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==, tarball: commander/download/commander-8.3.0.tgz}
+    engines: {node: '>= 12'}
+    dev: false

@@ -1,0 +1,27 @@
+{
+  "name": "create-vite-node",
+  "version": "0.0.1",
+  "description": "create-vite-node",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "create-vite-node": "index.js",
+    "cvn": "index.js"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoTwT/create-vite-node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LoTwT/create-vite-node/issues"
+  },
+  "homepage": "https://github.com/LoTwT/create-vite-node#readme",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "commander": "^8.3.0"
+  }
+}
