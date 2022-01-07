@@ -1,3 +1,4 @@
 import { fileURLToPath } from "url"
+import { dirname } from 'path'
 
-export const getCurrPath = (importMetaUrl) => fileURLToPath(importMetaUrl)
+export const toDirname = (importMetaUrl) => dirname(fileURLToPath(importMetaUrl))

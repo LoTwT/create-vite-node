@@ -2,7 +2,7 @@ import fs from "fs"
 import path from "path"
 import chalk from "chalk"
 
-import { getCurrPath } from "../../utils/index.js"
+import { toDirname } from "../../utils/index.js"
 import { recursiveWrite } from "../../utils/file.js"
 
 export default {
@@ -26,8 +26,8 @@ export default {
       fs.mkdirSync(projectName)
 
       const templatePath = path.resolve(
-        getCurrPath(import.meta.url),
-        "../../../../templates/vite-node",
+        toDirname(import.meta.url),
+        "../../../templates/vite-node",
       )
 
       // 递归写入
