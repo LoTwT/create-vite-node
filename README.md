@@ -26,11 +26,6 @@ A simple cli to create node template using [Vite](https://github.com/vitejs/vite
 - use
 
   ```shell
-  create-vite-node create <projectName>
-  ```
-
-  also
-
-  ```shell
-  cvn create <projectName>
+  # create-vite-node alias => cvn
+  cvn create [projectName]
   ```
