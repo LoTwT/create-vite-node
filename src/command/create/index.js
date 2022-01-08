@@ -1,42 +1,86 @@
 import fs from "fs"
 import path from "path"
 import chalk from "chalk"
+import prompts from "prompts"
 
-import { toDirname } from "../../utils/index.js"
-import { recursiveWrite } from "../../utils/file.js"
+import { toDirname, callWithErrorHandling } from "../../utils/index.js"
+import {
+  recursiveWrite,
+  isDirEmpty,
+  isExists,
+  customizePkg,
+  writeWithoutCheck,
+} from "../../utils/file.js"
+import { isValidPackageName, toValidPackageName } from "../../utils/validate.js"
+
+const create = (inlineProjectName) =>
+  callWithErrorHandling(async () => {
+    let targetDir = inlineProjectName
+    const defaultProjectName = targetDir ? targetDir : "vite-node"
+
+    // if targetDir exists and is not empty, it will throw an Error and exit current process.
+    const { packageName } = await prompts([
+      {
+        type: targetDir ? null : "text",
+        name: "projectName",
+        message: "Project name",
+        initial: defaultProjectName,
+        onState: (state) =>
+          (targetDir = state.value.trim() || defaultProjectName),
+      },
+      {
+        type: () =>
+          isExists(targetDir) && !isDirEmpty(targetDir) ? "confirm" : null,
+        name: "overwrite",
+        message: () =>
+          `${chalk.yellowBright(
+            targetDir,
+          )} exists and is not empty. Remove existing files and continue?`,
+      },
+      {
+        type: (_, { overwrite } = {}) => {
+          if (overwrite === false)
+            throw new Error(`${chalk.redBright("✖")} Create cancelled`)
+          return null
+        },
+      },
+      {
+        type: () => (isValidPackageName(targetDir) ? null : "text"),
+        name: "packageName",
+        message: "Valid package name",
+        initial: () => toValidPackageName(targetDir),
+        validate: (packageName) =>
+          isValidPackageName(packageName) || "Invalid package name.",
+        onState: (state) => (targetDir = state.value.trim()),
+      },
+    ])
+
+    const cwd = process.cwd()
+    // target working directory
+    const twd = path.resolve(cwd, targetDir)
+
+    const templatePath = path.resolve(
+      toDirname(import.meta.url),
+      "../../../templates/vite-node",
+    )
+
+    console.log(
+      `\n${chalk.blue(
+        `Scaffolding project in ${chalk.yellowBright(cwd)} .`,
+      )}\n`,
+    )
+
+    writeWithoutCheck(templatePath, twd)
+    customizePkg(path.resolve(twd, "package.json"), packageName || targetDir)
+
+    console.log(`${chalk.green("Down. Please run: ")}\n`)
+    console.log(`  ${chalk.cyanBright(`cd ${targetDir}`)}`)
+    console.log(`  ${chalk.cyanBright(`npm install`)}`)
+    console.log(`  ${chalk.cyanBright(`npm run dev`)}\n`)
+  })
 
 export default {
-  command: "create <projectName>",
+  command: "create [projectName]",
   description: "create vite node template",
-  action: (projectName) => {
-    // 已存在同名文件夹
-    if (fs.existsSync(projectName)) {
-      console.log(
-        `${chalk.redBright(
-          "It has a folder of the same name!",
-        )} ${chalk.cyanBright("Please change a project name.")}`,
-      )
-    } else {
-      console.log(
-        `\n${chalk.blue(`Scaffolding project in ${process.cwd()}...`)}\n`,
-      )
-
-      // 写入 template
-      // 创建项目文件夹
-      fs.mkdirSync(projectName)
-
-      const templatePath = path.resolve(
-        toDirname(import.meta.url),
-        "../../../templates/vite-node",
-      )
-
-      // 递归写入
-      recursiveWrite(templatePath, projectName)
-
-      console.log(`${chalk.green("Down. Please run: ")}\n`)
-      console.log(`  ${chalk.cyanBright(`cd ${projectName}`)}`)
-      console.log(`  ${chalk.cyanBright(`npm install`)}`)
-      console.log(`  ${chalk.cyanBright(`npm run dev`)}\n`)
-    }
-  },
+  action: create,
 }

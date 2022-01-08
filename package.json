@@ -27,6 +27,7 @@
   "homepage": "https://github.com/LoTwT/create-vite-node#readme",
   "dependencies": {
     "chalk": "^5.0.0",
-    "commander": "^8.3.0"
+    "commander": "^8.3.0",
+    "prompts": "^2.4.2"
   }
 }
