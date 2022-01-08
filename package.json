@@ -1,6 +1,6 @@
 {
   "name": "create-vite-node",
-  "version": "0.0.1",
+  "version": "0.0.11",
   "description": "create-vite-node",
   "main": "index.js",
   "type": "module",
@@ -19,7 +19,7 @@
     "vite-node",
     "create-vite-node"
   ],
-  "author": "",
+  "author": "LoTwT",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/LoTwT/create-vite-node/issues"
