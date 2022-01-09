@@ -1,12 +1,15 @@
 {
   "name": "create-vite-node",
-  "version": "0.0.11",
+  "version": "0.0.2",
   "description": "create-vite-node",
   "main": "index.js",
   "type": "module",
   "bin": {
     "create-vite-node": "index.js",
     "cvn": "index.js"
+  },
+  "engines": {
+    "node": ">=14.14.0"
   },
   "scripts": {},
   "repository": {
