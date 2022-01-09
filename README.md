@@ -7,12 +7,9 @@ A simple cli to create node template using [Vite](https://github.com/vitejs/vite
 ## Feature
 
 - all vite can do :laughing:
-
-## template
-
-- typescript
-- koa (vite-plugin-node also can adapte express, nest, fastify)
-- vitest
+- custom project template (by me)
+  - vite-node
+  - web
 
 ## scripts
 
@@ -27,5 +24,10 @@ A simple cli to create node template using [Vite](https://github.com/vitejs/vite
 
   ```shell
   # create-vite-node alias => cvn
-  cvn create [projectName]
+  cvn create [projectName] [options]
   ```
+
+### options
+
+- create:
+  - `-w, --web`: create web template
