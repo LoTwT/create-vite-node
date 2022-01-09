@@ -37,51 +37,58 @@ const create = (inlineProjectName, { web }) =>
       : "web-app"
 
     // if targetDir exists and is not empty, it will throw an Error and exit current process.
-    const { packageName, webTemplate } = await prompts([
+    const { packageName, webTemplate } = await prompts(
+      [
+        {
+          type: targetDir ? null : "text",
+          name: "projectName",
+          message: "Project name",
+          initial: defaultProjectName,
+          onState: (state) =>
+            (targetDir = state.value.trim() || defaultProjectName),
+        },
+        {
+          type: () =>
+            isExists(targetDir) && !isDirEmpty(targetDir) ? "confirm" : null,
+          name: "overwrite",
+          message: () =>
+            `${chalk.yellowBright(
+              targetDir,
+            )} exists and is not empty. Remove existing files and continue?`,
+        },
+        {
+          type: (_, { overwrite } = {}) => {
+            if (overwrite === false)
+              throw new Error(`${chalk.redBright("✖")} Create cancelled`)
+            return null
+          },
+        },
+        {
+          type: () => (isValidPackageName(targetDir) ? null : "text"),
+          name: "packageName",
+          message: "Valid package name",
+          initial: () => toValidPackageName(targetDir),
+          validate: (packageName) =>
+            isValidPackageName(packageName) || "Invalid package name.",
+          onState: (state) => (targetDir = state.value.trim()),
+        },
+        {
+          type: () => (web ? "select" : null),
+          name: "webTemplate",
+          message: "Select a web template",
+          choices: () =>
+            WEB_TEMPLATES.map((t) => ({
+              title: t.name,
+              value: t,
+            })),
+        },
+      ],
       {
-        type: targetDir ? null : "text",
-        name: "projectName",
-        message: "Project name",
-        initial: defaultProjectName,
-        onState: (state) =>
-          (targetDir = state.value.trim() || defaultProjectName),
-      },
-      {
-        type: () =>
-          isExists(targetDir) && !isDirEmpty(targetDir) ? "confirm" : null,
-        name: "overwrite",
-        message: () =>
-          `${chalk.yellowBright(
-            targetDir,
-          )} exists and is not empty. Remove existing files and continue?`,
-      },
-      {
-        type: (_, { overwrite } = {}) => {
-          if (overwrite === false)
-            throw new Error(`${chalk.redBright("✖")} Create cancelled`)
-          return null
+        onCancel: () => {
+          throw new Error(`${chalk.redBright("✖")} Create cancelled`)
         },
       },
-      {
-        type: () => (isValidPackageName(targetDir) ? null : "text"),
-        name: "packageName",
-        message: "Valid package name",
-        initial: () => toValidPackageName(targetDir),
-        validate: (packageName) =>
-          isValidPackageName(packageName) || "Invalid package name.",
-        onState: (state) => (targetDir = state.value.trim()),
-      },
-      {
-        type: () => (web ? "select" : null),
-        name: "webTemplate",
-        message: "Select a web template",
-        choices: () =>
-          WEB_TEMPLATES.map((t) => ({
-            title: t.name,
-            value: t,
-          })),
-      },
-    ])
+    )
 
     const cwd = process.cwd()
     // target working directory
