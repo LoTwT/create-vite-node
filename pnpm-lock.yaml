@@ -3,11 +3,13 @@ lockfileVersion: 5.3
 specifiers:
   chalk: ^5.0.0
   commander: ^8.3.0
+  execa: ^6.0.0
   prompts: ^2.4.2
 
 dependencies:
   chalk: 5.0.0
   commander: 8.3.0
+  execa: 6.0.0
   prompts: 2.4.2
 
 packages:
@@ -22,9 +24,85 @@ packages:
     engines: {node: '>= 12'}
     dev: false
 
+  /cross-spawn/7.0.3:
+    resolution: {integrity: sha1-9zqFudXUHQRVUcF34ogtSshXKKY=, tarball: cross-spawn/download/cross-spawn-7.0.3.tgz}
+    engines: {node: '>= 8'}
+    dependencies:
+      path-key: 3.1.1
+      shebang-command: 2.0.0
+      which: 2.0.2
+    dev: false
+
+  /execa/6.0.0:
+    resolution: {integrity: sha512-m4wU9j4Z9nXXoqT8RSfl28JSwmMNLFF69OON8H/lL3NeU0tNpGz313bcOfYoBBHokB0dC2tMl3VUcKgHELhL2Q==, tarball: execa/download/execa-6.0.0.tgz}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      cross-spawn: 7.0.3
+      get-stream: 6.0.1
+      human-signals: 3.0.1
+      is-stream: 3.0.0
+      merge-stream: 2.0.0
+      npm-run-path: 5.0.1
+      onetime: 6.0.0
+      signal-exit: 3.0.6
+      strip-final-newline: 3.0.0
+    dev: false
+
+  /get-stream/6.0.1:
+    resolution: {integrity: sha1-omLY7vZ6ztV8KFKtYWdSakPL97c=, tarball: get-stream/download/get-stream-6.0.1.tgz}
+    engines: {node: '>=10'}
+    dev: false
+
+  /human-signals/3.0.1:
+    resolution: {integrity: sha1-x0CSCFna+lDloyItqdO/S7Dl7vU=, tarball: human-signals/download/human-signals-3.0.1.tgz}
+    engines: {node: '>=12.20.0'}
+    dev: false
+
+  /is-stream/3.0.0:
+    resolution: {integrity: sha1-5r/XqmvvafT0cs6btoHj5XtDGaw=, tarball: is-stream/download/is-stream-3.0.0.tgz}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dev: false
+
+  /isexe/2.0.0:
+    resolution: {integrity: sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=, tarball: isexe/download/isexe-2.0.0.tgz}
+    dev: false
+
   /kleur/3.0.3:
     resolution: {integrity: sha1-p5yezIbuHOP6YgbRIWxQHxR/wH4=, tarball: kleur/download/kleur-3.0.3.tgz}
     engines: {node: '>=6'}
+    dev: false
+
+  /merge-stream/2.0.0:
+    resolution: {integrity: sha1-UoI2KaFN0AyXcPtq1H3GMQ8sH2A=, tarball: merge-stream/download/merge-stream-2.0.0.tgz}
+    dev: false
+
+  /mimic-fn/4.0.0:
+    resolution: {integrity: sha1-YKkFUNXLCyOcymXYk7GlOymHHsw=, tarball: mimic-fn/download/mimic-fn-4.0.0.tgz}
+    engines: {node: '>=12'}
+    dev: false
+
+  /npm-run-path/5.0.1:
+    resolution: {integrity: sha1-dI3WjtfeN3ux9xMsfa/mV75atAA=, tarball: npm-run-path/download/npm-run-path-5.0.1.tgz}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      path-key: 4.0.0
+    dev: false
+
+  /onetime/6.0.0:
+    resolution: {integrity: sha1-fCTBjtH9LpvKS9JoBqM2E8d9NLQ=, tarball: onetime/download/onetime-6.0.0.tgz}
+    engines: {node: '>=12'}
+    dependencies:
+      mimic-fn: 4.0.0
+    dev: false
+
+  /path-key/3.1.1:
+    resolution: {integrity: sha1-WB9q3mWMu6ZaDTOA3ndTKVBU83U=, tarball: path-key/download/path-key-3.1.1.tgz}
+    engines: {node: '>=8'}
+    dev: false
+
+  /path-key/4.0.0:
+    resolution: {integrity: sha1-KVWI3DruZBVPh3rbnXgLgcVUvxg=, tarball: path-key/download/path-key-4.0.0.tgz}
+    engines: {node: '>=12'}
     dev: false
 
   /prompts/2.4.2:
@@ -35,6 +113,35 @@ packages:
       sisteransi: 1.0.5
     dev: false
 
+  /shebang-command/2.0.0:
+    resolution: {integrity: sha1-zNCvT4g1+9wmW4JGGq8MNmY/NOo=, tarball: shebang-command/download/shebang-command-2.0.0.tgz}
+    engines: {node: '>=8'}
+    dependencies:
+      shebang-regex: 3.0.0
+    dev: false
+
+  /shebang-regex/3.0.0:
+    resolution: {integrity: sha1-rhbxZE2HPsrYQ7AwexQzYtTEIXI=, tarball: shebang-regex/download/shebang-regex-3.0.0.tgz}
+    engines: {node: '>=8'}
+    dev: false
+
+  /signal-exit/3.0.6:
+    resolution: {integrity: sha512-sDl4qMFpijcGw22U5w63KmD3cZJfBuFlVNbVMKje2keoKML7X2UzWbc4XrmEbDwg0NXJc3yv4/ox7b+JWb57kQ==, tarball: signal-exit/download/signal-exit-3.0.6.tgz}
+    dev: false
+
   /sisteransi/1.0.5:
     resolution: {integrity: sha1-E01oEpd1ZDfMBcoBNw06elcQde0=, tarball: sisteransi/download/sisteransi-1.0.5.tgz}
+    dev: false
+
+  /strip-final-newline/3.0.0:
+    resolution: {integrity: sha1-UolMMT+/8xiDUoCu1g/3Hr8SuP0=, tarball: strip-final-newline/download/strip-final-newline-3.0.0.tgz}
+    engines: {node: '>=12'}
+    dev: false
+
+  /which/2.0.2:
+    resolution: {integrity: sha1-fGqN0KY2oDJ+ELWckobu6T8/UbE=, tarball: which/download/which-2.0.2.tgz}
+    engines: {node: '>= 8'}
+    hasBin: true
+    dependencies:
+      isexe: 2.0.0
     dev: false

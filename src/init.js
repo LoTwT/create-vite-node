@@ -17,7 +17,11 @@ const registerOption = (options) => {
 
 const registerCommand = (commands) => {
   commands.forEach((c) => {
-    const { command, description, action } = c
-    program.command(command).description(description).action(action)
+    const { command, description, action, option } = c
+    program
+      .command(command)
+      .option(option || null)
+      .description(description)
+      .action(action)
   })
 }

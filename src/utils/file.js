@@ -41,3 +41,8 @@ export const customizePkg = (pkgPath, pkgName) => {
   pkgName && (pkg.name = pkgName)
   fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2))
 }
+
+export const rmGit = (dirpath) => {
+  const gitpath = path.resolve(dirpath, ".git")
+  isExists(gitpath) && fs.rmSync(gitpath, { recursive: true })
+}
