@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "build": "tsc && vite build",
     "test": "vitest"
   },
   "dependencies": {
@@ -10,9 +11,9 @@
   },
   "devDependencies": {
     "@types/koa": "^2.13.4",
-    "@types/node": "^17.0.6",
-    "vite": "^2.7.10",
+    "@types/node": "^17.0.8",
+    "vite": "^2.7.12",
     "vite-plugin-node": "^0.0.15",
-    "vitest": "^0.0.127"
+    "vitest": "^0.1.13"
   }
 }
