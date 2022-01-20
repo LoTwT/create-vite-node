@@ -10,6 +10,9 @@ A simple cli to create node template using [Vite](https://github.com/vitejs/vite
 - custom project template (by me)
   - vite-node
   - web
+    1. `vue3-cms`
+    1. `pioneer`: vue3 + vite + ts + ant-design-vue + vitest
+    1. `pioneer-complete`: pioneer + vue-router + pinia
 
 ## scripts
 
