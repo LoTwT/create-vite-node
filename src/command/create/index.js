@@ -25,6 +25,11 @@ const WEB_TEMPLATES = [
     repository: "https://github.com/LoTwT/vue3-template.git",
     branch: "pioneer",
   },
+  {
+    name: "pioneer-complete",
+    repository: "https://github.com/LoTwT/vue3-template.git",
+    branch: "pioneer-complete",
+  },
 ]
 
 const create = (inlineProjectName, { web }) =>
